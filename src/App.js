@@ -1,3 +1,4 @@
+import React from 'react';
 import CurrencyConverter from "./components/CurrencyConverter";
 // import ExchangeRate from "./components/ExchangeRate";
 import NewsFeed from "./components/NewsFeed";
