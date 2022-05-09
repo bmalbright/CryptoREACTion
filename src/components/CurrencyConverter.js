@@ -8,7 +8,15 @@ export default function CurrencyConverter() {
   const [chosenPrimaryCurrency, setChosenPrimaryCurrency] = useState("BTC");
   const [chosenSecondaryCurrency, setChosenSecondaryCurrency] = useState("BTC");
   const [amount, setAmount] = useState(1);
-  const [exchangeRate, setExchangeRate] = useState(0);
+  // const [exchangeRate, setExchangeRate] = useState(0);
+  // const [primaryCurrencyExchanged, setPrimaryCurrencyExchanged] = useState('BTC');
+  // const [secondaryCurrencyExchanged, setSecondaryCurrencyExchanged] = useState('BTC');
+
+  const [exchangedData, setExchangedData] = useState({
+    primaryCurrency: 'BTC',
+    secondaryCurrency: 'BTC',
+    exchangeRate: 0
+  })
   const [result, setResult] = useState(0)
 
   const convert = () => {
@@ -25,18 +33,26 @@ export default function CurrencyConverter() {
     
     axios.request(options).then((response) => {
         console.log(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate']);
-        setExchangeRate(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate']);
+        // setExchangeRate(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate']);
         setResult(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate'] * amount);
-    }).catch((error) => {
+        // setPrimaryCurrencyExchanged(chosenPrimaryCurrency);
+        // setSecondaryCurrencyExchanged(chosenSecondaryCurrency);
+        setExchangedData({
+          primaryCurrency: chosenPrimaryCurrency,
+          secondaryCurrency: chosenSecondaryCurrency,
+          exchangeRate: response.data['Realtime Currency Exchange Rate']['5. Exchange Rate']
+        })
+      }).catch((error) => {
         console.error(error);
     });
   };
 
-
+// left these console logs in for kicks. 
   console.log(chosenPrimaryCurrency);
   console.log(chosenSecondaryCurrency);
   console.log(amount);
-  console.log(exchangeRate)
+  // console.log(exchangeRate)
+  console.log(exchangedData);
 
   return (
     <div className="CurrencyConverter">
@@ -46,7 +62,7 @@ export default function CurrencyConverter() {
           <tbody>
             <tr>
               <td>Primary Currency:</td>
-              {/* enter the amound of the primary currency */}
+              {/* enter the amount of the primary currency */}
               <td>
                 <input
                   type="number"
@@ -71,7 +87,7 @@ export default function CurrencyConverter() {
             </tr>
             <tr>
               <td>Secondary Currency:</td>
-              {/* display of the conversion of the currency multiplied by the amout*/}
+              {/* display of the conversion of the currency multiplied by the amount*/}
               <td>
                 <input 
                 name="currency-amount-2" 
@@ -81,7 +97,7 @@ export default function CurrencyConverter() {
                 />
                 onChange={(e) => setAmount(e.target.value)}
               </td>
-              {/* this is the menu for selecting secondary currency */}
+              {/* this is the menu for selecting secondary currency to compare against primary currency*/}
               <td>
                 <select
                   value={chosenSecondaryCurrency}
@@ -100,9 +116,9 @@ export default function CurrencyConverter() {
         <button id="convert-button" onClick={convert}>Convert</button>
       </div>
       <ExchangeRate  
-      exchangeRate={exchangeRate}
-      chosenPrimaryCurrency={chosenPrimaryCurrency}
-      chosenSecondaryCurrency={chosenSecondaryCurrency}
+      exchangedData={exchangedData}
+      // chosenPrimaryCurrency={primaryCurrencyExchanged}
+      // chosenSecondaryCurrency={secondaryCurrencyExchanged}
       />
     </div>
   );

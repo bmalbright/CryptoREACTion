@@ -1,11 +1,11 @@
 import React from 'react'
 
-export default function ExchangeRate({exchangeRate, chosenPrimaryCurrency, chosenSecondaryCurrency}) {
+export default function ExchangeRate({exchangedData}) {
   return (
     <div className='ExchangeRate'>
        <h3> Exchange Rate: </h3>
-        <h1>{exchangeRate}</h1>
-        <p>{chosenPrimaryCurrency} to {chosenSecondaryCurrency}</p>
+        <h1>{exchangedData.exchangeRate}</h1>
+        <p>{exchangedData.primaryCurrency} to {exchangedData.secondaryCurrency}</p>
     </div>
   )
 }

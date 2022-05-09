@@ -32,7 +32,7 @@ export default function NewsFeed() {
   const first6Articles = articles?.slice(0, 6);
 
   return (
-    <div className="news-feed">
+    <div className="NewsFeed">
       <h2>News Feed</h2>
       {first6Articles?.map((article, _index) => (
         <div key={_index}>
