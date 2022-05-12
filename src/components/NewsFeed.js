@@ -8,16 +8,11 @@ export default function NewsFeed() {
   useEffect(() => {
     const options = {
       method: "GET",
-      url: "https://crypto-news-live3.p.rapidapi.com/news",
-      headers: {
-        "X-RapidAPI-Host": "crypto-news-live3.p.rapidapi.com",
-        "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY
-      },
-    };
+      url: "http://localhost:3001/news",
+      };
 
-    axios
-      .request(options)
-      .then((response) => {
+
+    axios.request(options).then((response) => {
         console.log(response.data);
         setArticles(response.data);
       })

@@ -11,7 +11,7 @@ function App() {
         <Col>
         <Card className="title">
           <h1 >Crypto REACTion</h1>
-          <h2 >A currency and crypto news dashboard</h2>
+          {/* <h2 >A currency and crypto news dashboard</h2> */}
           </Card>
           <Card>
             <CurrencyConverter />

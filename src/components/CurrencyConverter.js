@@ -8,9 +8,6 @@ export default function CurrencyConverter() {
   const [chosenPrimaryCurrency, setChosenPrimaryCurrency] = useState("BTC");
   const [chosenSecondaryCurrency, setChosenSecondaryCurrency] = useState("BTC");
   const [amount, setAmount] = useState(1);
-  // const [exchangeRate, setExchangeRate] = useState(0);
-  // const [primaryCurrencyExchanged, setPrimaryCurrencyExchanged] = useState('BTC');
-  // const [secondaryCurrencyExchanged, setSecondaryCurrencyExchanged] = useState('BTC');
 
   const [exchangedData, setExchangedData] = useState({
     primaryCurrency: 'BTC',
@@ -19,28 +16,25 @@ export default function CurrencyConverter() {
   })
   const [result, setResult] = useState(0)
 
+  console.log(exchangedData)
+
   const convert = () => {
 // API call for the currency exchange
     const options = {
       method: 'GET',
-      url: 'https://alpha-vantage.p.rapidapi.com/query',
+      url: 'http://localhost:3001/convert',
       params: {from_currency: chosenPrimaryCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: chosenSecondaryCurrency},
-      headers: {
-        'X-RapidAPI-Host': 'alpha-vantage.p.rapidapi.com',
-        'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY
-      }
     };
     
     axios.request(options).then((response) => {
-        console.log(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate']);
-        // setExchangeRate(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate']);
-        setResult(response.data['Realtime Currency Exchange Rate']['5. Exchange Rate'] * amount);
-        // setPrimaryCurrencyExchanged(chosenPrimaryCurrency);
-        // setSecondaryCurrencyExchanged(chosenSecondaryCurrency);
+        console.log(response.data);
+
+        setResult(response.data * amount);
+
         setExchangedData({
           primaryCurrency: chosenPrimaryCurrency,
           secondaryCurrency: chosenSecondaryCurrency,
-          exchangeRate: response.data['Realtime Currency Exchange Rate']['5. Exchange Rate']
+          exchangeRate: response.data
         })
       }).catch((error) => {
         console.error(error);
@@ -51,7 +45,6 @@ export default function CurrencyConverter() {
   console.log(chosenPrimaryCurrency);
   console.log(chosenSecondaryCurrency);
   console.log(amount);
-  // console.log(exchangeRate)
   console.log(exchangedData);
 
   return (
@@ -95,7 +88,7 @@ export default function CurrencyConverter() {
                 type='number' 
                 disabled={true}
                 />
-                onChange={(e) => setAmount(e.target.value)}
+                {(e) => setAmount(e.target.value)}
               </td>
               {/* this is the menu for selecting secondary currency to compare against primary currency*/}
               <td>
@@ -117,8 +110,6 @@ export default function CurrencyConverter() {
       </div>
       <ExchangeRate  
       exchangedData={exchangedData}
-      // chosenPrimaryCurrency={primaryCurrencyExchanged}
-      // chosenSecondaryCurrency={secondaryCurrencyExchanged}
       />
     </div>
   );
