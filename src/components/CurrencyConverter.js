@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import ExchangeRate from "./ExchangeRate";
 import axios from "axios";
+import {Table} from 'react-bootstrap';
 
 export default function CurrencyConverter() {
   const currencies = ["BTC", "ETH", "USD", "XRP", "LTC", "ADA"];
@@ -18,6 +19,14 @@ export default function CurrencyConverter() {
 
   console.log(exchangedData)
 
+
+  const [resetData, setResetData] = useState({
+    primaryCurrency: chosenPrimaryCurrency,
+    secondaryCurrency: chosenSecondaryCurrency,
+    exchangeRate: 0
+  })
+ 
+
   const convert = () => {
 // API call for the currency exchange
     const options = {
@@ -26,6 +35,8 @@ export default function CurrencyConverter() {
       params: {from_currency: chosenPrimaryCurrency, function: 'CURRENCY_EXCHANGE_RATE', to_currency: chosenSecondaryCurrency},
     };
     
+
+
     axios.request(options).then((response) => {
         console.log(response.data);
 
@@ -38,7 +49,20 @@ export default function CurrencyConverter() {
         })
       }).catch((error) => {
         console.error(error);
+
+
+        setResetData({
+          primaryCurrency: 'BTC',
+          secondaryCurrency: 'BTC',
+          exchangeRate: 0
+        })
+
     });
+
+
+   
+
+
   };
 
 // left these console logs in for kicks. 
@@ -46,12 +70,16 @@ export default function CurrencyConverter() {
   console.log(chosenSecondaryCurrency);
   console.log(amount);
   console.log(exchangedData);
+  console.log(resetData);
+
+
+
 
   return (
     <div className="CurrencyConverter">
       <h2> CurrencyConverter </h2>
       <div className="input-box">
-        <table>
+        <Table>
           <tbody>
             <tr>
               <td>Primary Currency:</td>
@@ -78,7 +106,8 @@ export default function CurrencyConverter() {
                 </select>
               </td>
             </tr>
-            <tr>
+            {/* <br/> */}
+            <tr className="secondary">
               <td>Secondary Currency:</td>
               {/* display of the conversion of the currency multiplied by the amount*/}
               <td>
@@ -105,8 +134,10 @@ export default function CurrencyConverter() {
               </td>
             </tr>
           </tbody>
-        </table>
+        </Table>
+        {/* <br/> */}
         <button id="convert-button" onClick={convert}>Convert</button>
+        <button id="reset-button" onClick={setResetData}>Reset</button>
       </div>
       <ExchangeRate  
       exchangedData={exchangedData}

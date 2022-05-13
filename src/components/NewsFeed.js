@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import {Card} from 'react-bootstrap';
 
 export default function NewsFeed() {
   const [articles, setArticles] = useState(null);
@@ -27,15 +28,20 @@ export default function NewsFeed() {
   const first6Articles = articles?.slice(0, 6);
 
   return (
-    <div className="NewsFeed">
-      <h2>News Feed</h2>
+
+    <div className="NewsFeed" >
+      <h2 className="NewsTitle">News Feed</h2>
       {first6Articles?.map((article, _index) => (
-        <div key={_index}>
-          <a href={article.url}>
-            <p>{article.title}</p>
+
+          <a href={article.url} target="-blank" rel="noopener noreferrer">
+        <Card className="NewsCard" key={_index} >
+            <Card.Title>{article.title}</Card.Title>
+            </Card>
           </a>
-        </div>
+
+
       ))}
+    
     </div>
   );
 }
