@@ -29,7 +29,7 @@ export default function NewsFeed() {
 
   return (
 
-    <div className="NewsFeed" >
+    <div >
       <h2 className="NewsTitle">News Feed</h2>
       {first6Articles?.map((article, _index) => (
 

@@ -9,14 +9,13 @@ function App() {
     <div className="App">
       <Container>
         <Col>
-        <Card className="CryptoApp">
-          <h1 className="title">Crypto REACTion</h1>
-          {/* <h2 >A currency and crypto news dashboard</h2> */}
-          {/* </Card>
-          <Card> */}
+          <Card className="CryptoApp">
+            <h1 className="title">Crypto REACTion</h1>
+            <h2 >A currency converter and crypto news dashboard</h2>
+    
             <CurrencyConverter />
           </Card>
-          <Card>
+          <Card className="NewsFeed">
             <NewsFeed />
           </Card>
         </Col>

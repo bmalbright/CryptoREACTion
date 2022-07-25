@@ -2,6 +2,8 @@
 
 body {
   margin: 0;
+  font-family: 'Changa', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
 }
 
 .App {
@@ -21,31 +23,31 @@ body {
   text-align: center;
   border-radius: 15px;
   font-family: 'Changa', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-
+  margin-left: 10%;
+  margin-right:10%;
 }
 
 .title {
   padding-top: 10px;
   font-size: 300%;
-  font-family: 'Changa', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  /* font-family: 'Changa', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
 }
 
-.input-box {
+/* .input-box {
   justify-content: center;
-}
+} */
 
 .CurrencyConverter {
   padding-left: 10px;
   padding-right: 10px;
   font-size: 150%;
   align-items: center;
-  /* box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); */
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); 
 }
 
-.ExchangeRate {
+/* .ExchangeRate {
   align-content: center;
-} 
-
+}  */
 
 
 button {
@@ -57,6 +59,7 @@ button {
   margin-top: 10px;
   margin-bottom: 10px;
  font-family: 'Changa', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Ar ial, sans-serif;
+border-radius: 15px;
 }
 
 button:hover {
@@ -67,24 +70,28 @@ button:hover {
 
 .NewsFeed {
   background-color: #60DDDA;
-  border-radius: 15px;
   text-align: center;
-  font-family: 'Changa';
-}
+  border-radius: 15px;
+  /* font-family: 'Changa', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+  margin-left: 10%;
+  margin-right:10%;
+} 
 
 .NewsTitle {
   font-size: 250%;
 }
 
-.NewsCard {
+/* .NewsCard {
 border: #000000;
 border-width: 45px;
 max-width: 80%;
 padding-left:10%;
 padding-right:10%;
-padding-top:25px;
+padding-top:15px;
+margin-left: 15%;
+margin-left: 15%;
 font-size: larger;
-} 
+}  */
 
 a {
   color: white;
