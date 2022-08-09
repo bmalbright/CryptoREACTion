@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import {Card} from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 export default function NewsFeed() {
   const [articles, setArticles] = useState(null);
@@ -10,13 +10,13 @@ export default function NewsFeed() {
     const options = {
       method: "GET",
       url: "http://localhost:3001/news",
-      };
+    };
 
 
     axios.request(options).then((response) => {
-        console.log(response.data);
-        setArticles(response.data);
-      })
+      console.log(response.data);
+      setArticles(response.data);
+    })
       .catch((error) => {
         console.error(error);
       });
@@ -30,18 +30,22 @@ export default function NewsFeed() {
   return (
 
     <div >
-      <h2 className="NewsTitle">News Feed</h2>
+      <h2 className="NewsTitle">Crypto News Feed</h2>
       {first6Articles?.map((article, _index) => (
 
-          <a href={article.url} target="-blank" rel="noopener noreferrer">
-        <Card className="NewsCard" key={_index} >
-            <Card.Title>{article.title}</Card.Title>
-            </Card>
-          </a>
+        <a href={article.url} target="-blank" rel="noopener noreferrer">
+          <Card className="NewsCard" key={_index} >
+            <Card.Body>
+              <Card.Title>{article.title}</Card.Title>
+              <Card.Text>{article.text}</Card.Text>
+            </Card.Body>
+          </Card>
+        </a>
 
 
       ))}
-    
+
     </div>
+
   );
 }
