@@ -56,4 +56,5 @@ app.get('/news', (req,res) => {
         });
 })
 
-app.listen(3001, () => console.log('server is running on port ${PORT'))
+// changing 3001 to PORT
+app.listen(PORT, () => console.log('server is running on port ${PORT'))
