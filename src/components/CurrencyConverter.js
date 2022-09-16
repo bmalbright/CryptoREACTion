@@ -19,7 +19,6 @@ export default function CurrencyConverter() {
   const [result, setResult] = useState(0)
 
 
-
   const convert = () => {
     // API call for the currency exchange
     const options = {
@@ -61,64 +60,62 @@ export default function CurrencyConverter() {
       <div className="input-box">
         <Col>
           <Card>
-
-            {/* <tbody className="tbody"> */}
-              <Row>
-                <h3 className="primary">Primary Currency:</h3>
-              </Row>
-              <Row>
-                {/* enter the amount of the primary currency */}
-                <Col>
-                  <input
-                    type="number"
-                    name="currency-amount-1"
-                    value={amount}
-                    onChange={(e) => setAmount(e.target.value)}
-                  />
-                </Col>
-                {/* this selects the primary currency  */}
-                <Col>
-                  <select
-                    value={chosenPrimaryCurrency}
-                    name="currency-option-1"
-                    className="currency-options"
-                    onChange={(e) => setChosenPrimaryCurrency(e.target.value)}
-                  >
-                    {currencies.map((currency, _index) => (
-                      <option key={_index}>{currency}</option>
-                    ))}
-                  </select>
-                </Col>
-              </Row>
-              {/* <br/> */}
-              <Row className="secondary">
-                <h3>Secondary Currency:</h3>
-              </Row>
-              <Row>
-                {/* display of the conversion of the currency multiplied by the amount*/}
-                <Col>
-                  <input
-                    name="currency-amount-2"
-                    value={result}
-                    type='number'
-                    disabled={true}
-                  />
-                  {(e) => setAmount(e.target.value)}
-                </Col>
-                {/* this is the menu for selecting secondary currency to compare against primary currency*/}
-                <Col>
-                  <select
-                    value={chosenSecondaryCurrency}
-                    name="currency-option-2"
-                    className="currency-options"
-                    onChange={(e) => setChosenSecondaryCurrency(e.target.value)}
-                  >
-                    {currencies.map((currency, _index) => (
-                      <option key={_index}>{currency}</option>
-                    ))}
-                  </select>
-                </Col>
-              </Row>
+            <Row>
+              <h3 className="primary">Primary Currency:</h3>
+            </Row>
+            <Row>
+              {/* enter the amount of the primary currency */}
+              <Col>
+                <input
+                  type="number"
+                  name="currency-amount-1"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                />
+              </Col>
+              {/* this selects the primary currency  */}
+              <Col>
+                <select
+                  value={chosenPrimaryCurrency}
+                  name="currency-option-1"
+                  className="currency-options"
+                  onChange={(e) => setChosenPrimaryCurrency(e.target.value)}
+                >
+                  {currencies.map((currency, _index) => (
+                    <option key={_index}>{currency}</option>
+                  ))}
+                </select>
+              </Col>
+            </Row>
+            {/* <br/> */}
+            <Row className="secondary">
+              <h3>Secondary Currency:</h3>
+            </Row>
+            <Row>
+              {/* display of the conversion of the currency multiplied by the amount*/}
+              <Col>
+                <input
+                  name="currency-amount-2"
+                  value={result}
+                  type='number'
+                  disabled={true}
+                />
+                {(e) => setAmount(e.target.value)}
+              </Col>
+              {/* this is the menu for selecting secondary currency to compare against primary currency*/}
+              <Col>
+                <select
+                  value={chosenSecondaryCurrency}
+                  name="currency-option-2"
+                  className="currency-options"
+                  onChange={(e) => setChosenSecondaryCurrency(e.target.value)}
+                >
+                  {currencies.map((currency, _index) => (
+                    <option key={_index}>{currency}</option>
+                  ))}
+                </select>
+              </Col>
+            </Row>
 
           </Card>
         </Col>
